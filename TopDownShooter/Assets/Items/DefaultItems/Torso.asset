@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55e8d23a8a5b164c94d1df152d34deb, type: 3}
+  m_Name: Torso
+  m_EditorClassIdentifier: 
+  name: Torso
+  icon: {fileID: 21300000, guid: 404e3020e34464f40a51c54b8b9eebf8, type: 3}
+  isDefaultItem: 1
+  equipSlot: 4
+  mesh: {fileID: 6012608792895552806, guid: 5199a0fa09e8a3a4081533ba0e0cf742, type: 3}
+  armorModifier: 1
+  damageModifier: 1
