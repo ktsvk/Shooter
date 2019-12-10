@@ -14,7 +14,7 @@ public class HealthScript : MonoBehaviour
     void Start()
     {
         player = Player.instance;
-        if (player.onMainMenu)
+        if (player.OnMainMenu)
             return;
         healthSystem = new HealthSystem(1000);
         healthSystem.OnHealthChanged += HealthSystem_OnHealthChanged;

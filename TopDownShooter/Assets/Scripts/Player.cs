@@ -18,8 +18,9 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    public bool onMainMenu = false;
-    public float score = 0;
+    private float score;
+    private float money = 40000;
+    private bool onMainMenu;
 
     public SpriteRenderer Head;
     public SpriteRenderer LeftHand;
@@ -27,21 +28,30 @@ public class Player : MonoBehaviour
     public SpriteRenderer Torso;
     public SpriteRenderer Weapon;
 
-    private HealthScript healthScript;
-    private PlayerMovement playerMovement;
-    private Shooting shooting;
-
     [SerializeField]
     private TextMeshProUGUI scoreLabel;
+
+    public float Money { get => money; set => money = value; }
+    public float Score { get => score; set => score = value; }
+    public bool OnMainMenu { get => onMainMenu; set => onMainMenu = value; }
+
     void Start()
     {
-        healthScript = GetComponent<HealthScript>();
-        playerMovement = GetComponent<PlayerMovement>();
-        shooting = GetComponent<Shooting>();
 
     }
-    public void ChangeScore()
+    public void AddMoney(float money)
     {
-
+        this.money += money;
     }
+    public void SubMoney(float money)
+    {
+        this.money -= money;
+        if (this.money < 0)
+            this.money = 0;
+    }
+    public float GetMoney()
+    {
+        return this.money;
+    }
+
 }

@@ -10,18 +10,24 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private GameObject bloodEffect;
+    [SerializeField]
+    private GameObject[] blood;
 
     private HealthSystem healthSystem;
     private Animator anim;
     private Rigidbody2D rb;
     private Vector2 movement;
 
-    public float experience = 20f;
+    private float experience = 20f;
+    private float reward = 30f;
 
     [SerializeField]
     private float speed = 10f;
     [SerializeField]
     private Image healthbar;
+
+    public float Experience { get => experience;}
+    public float Reward { get => reward;}
 
     public event EventHandler KillEnemy;
 
@@ -48,9 +54,12 @@ public class Enemy : MonoBehaviour
 
     private void HealthSystem_Death(object sender, EventArgs e)
     {
-        Destroy(gameObject);
         var effect = Instantiate(bloodEffect, transform.position, Quaternion.identity);
+        var temp = UnityEngine.Random.Range(0, blood.Length);
+        var _blood = Instantiate(blood[temp], transform.position, Quaternion.identity);
+        Destroy(gameObject);
         Destroy(effect, 2f);
+        player.AddMoney(UnityEngine.Random.Range(reward - 10, reward + 10));
         KillEnemy?.Invoke(this, EventArgs.Empty);
     }
 
@@ -69,7 +78,7 @@ public class Enemy : MonoBehaviour
         {
             var target = collision.gameObject.GetComponent<HealthScript>();
             collision.gameObject.GetComponent<Animator>().Play("GetDamage", 0);
-            if (player.onMainMenu)
+            if (player.OnMainMenu)
                 return;
             target.healthSystem.Damage(UnityEngine.Random.Range(5, 10));
             Debug.Log("Health " + target.healthSystem.GetHealth());

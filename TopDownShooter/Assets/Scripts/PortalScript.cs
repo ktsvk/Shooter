@@ -6,23 +6,25 @@ using UnityEngine.UI;
 
 public class PortalScript : MonoBehaviour
 {
-    private Player player;
-    private float timeToInstantiate = 30f;
-    public float experience = 50f;
+    Player player;
+    float timeToInstantiate = 30f;
+    float experience = 50f;
 
     [SerializeField]
-    private float speed = 30f;
+    float speed = 30f;
 
     Enemy _enemy;
-    private HealthSystem healthSystem;
+    HealthSystem healthSystem;
 
     [SerializeField]
-    private Image healthbar;
+    Image healthbar;
     [SerializeField]
-    private Enemy enemy;
+    Enemy enemy;
 
     public event EventHandler DestroyPortal;
     public float TimeToInstantiate { get => timeToInstantiate; }
+    public float Experience { get => experience;}
+
     void Start()
     {
         player = Player.instance;
@@ -50,7 +52,7 @@ public class PortalScript : MonoBehaviour
     private void Enemy_KillEnemy(object sender, System.EventArgs e)
     {
         var Enemy = (Enemy)sender;
-        player.score += Mathf.Round(UnityEngine.Random.Range(enemy.experience - 10, enemy.experience + 10));
+        player.Score += Mathf.Round(UnityEngine.Random.Range(enemy.Experience - 10, enemy.Experience + 10));
     }
     void Update()
     {

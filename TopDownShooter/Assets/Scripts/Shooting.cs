@@ -15,6 +15,10 @@ public class Shooting : MonoBehaviour
     private MagmaShooting magmaBullet;
     private Weapons weapons;
     private Weapon[] _weapons;
+    [SerializeField]
+    private AudioClip[] audioClipShots;
+    [SerializeField]
+    private AudioSource audioSource;
 
     [SerializeField]
     private Image overheadImage;
@@ -37,23 +41,30 @@ public class Shooting : MonoBehaviour
         timePerShooting = currentWeapon.TimePerShooting;
         player.Weapon.sprite = currentWeapon.Sprite;
     }
-
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
+    }
+    public Weapon GetWeapon(int index)
+    {
+        return _weapons[index];
+    }
     private void Shot(int index)
     {
-        if (index != 3)
+        if (index != 3 && index != 4)
         {
+            audioSource.Play();
             currentWeapon = weapons.TakeWeapon(index);
             Bullet bullet = currentWeapon.Bullet;
             BulletScript bs = Instantiate(bullet.Prefab, currentWeapon.ExitPoint.position, currentWeapon.ExitPoint.rotation).GetComponent<BulletScript>();
             bs.Initialize(bullet.Damage, bullet.Speed);
-            //Rigidbody2D rb = bs.GetComponent<Rigidbody2D>();
-            //rb.AddForce(mousePos * bullet.Speed, ForceMode2D.Impulse);
             Destroy(bs, 10f);
         }
         if(index == 3)
         {
             if (canShooting)
             {
+                audioSource.Play();
                 currentWeapon = weapons.TakeWeapon(index);
                 Bullet bullet = currentWeapon.Bullet;
                 magmaBullet = Instantiate(bullet.Prefab, currentWeapon.ExitPoint.position, currentWeapon.ExitPoint.rotation).GetComponent<MagmaShooting>();
@@ -61,39 +72,61 @@ public class Shooting : MonoBehaviour
                 canShooting = false;
             }
         }
+        if (index == 4)
+        {
+            if (canShooting)
+            {
+                if (!audioSource.isPlaying)
+                    audioSource.Play();
+                currentWeapon = weapons.TakeWeapon(index);
+                Bullet bullet = currentWeapon.Bullet;
+                BulletScript bs = Instantiate(bullet.Prefab, currentWeapon.ExitPoint.position, currentWeapon.ExitPoint.rotation).GetComponent<BulletScript>();
+                bs.Initialize(bullet.Damage, bullet.Speed);
+                Destroy(bs, 10f);
+            }
+        }
     }
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        _weapons = weapons.GetWeapons();
+        foreach (var item in _weapons)
         {
-            timePerShooting -= Time.deltaTime;
-            if(timePerShooting <= 0f)
+            if (item != currentWeapon)
             {
-                currentWeapon.Overhead += Time.deltaTime;
-                overheadImage.fillAmount = currentWeapon.Overhead;
-                if (currentWeapon.Overhead > 1f)
-                    currentWeapon.Overhead = 1f;
-                if (currentWeapon.Overhead < 1f)
-                {
-                    Shot(currentWeapon.Index);
-                    anim.Play("Shooting", 0);
-                    timePerShooting = currentWeapon.TimePerShooting;
-                }     
-            }
-        }
-        else 
-        {
-            _weapons = weapons.GetWeapons();
-            foreach (var item in _weapons)
-            {
-                item.Overhead -= Time.deltaTime;
+                item.Overhead -= Time.deltaTime * 0.2f;
                 if (item.Overhead < 0f)
                 {
                     item.Overhead = 0f;
                 }
             }
-            overheadImage.fillAmount = currentWeapon.Overhead;
         }
+        if (Input.GetMouseButton(0))
+        {
+            timePerShooting -= Time.deltaTime;
+            if (timePerShooting <= 0f)
+            {
+                currentWeapon.Overhead += Time.deltaTime;
+                if (currentWeapon.Overhead > 1f)
+                    currentWeapon.Overhead = 1f;
+                if (currentWeapon.Overhead < 1f)
+                {
+                    Shot(currentWeapon.Index);
+                    audioSource.clip = audioClipShots[currentWeapon.Index];
+                    anim.Play("Shooting", 0);
+                    timePerShooting = currentWeapon.TimePerShooting;
+                }
+            }
+        }
+        else
+        {
+            currentWeapon.Overhead -= Time.deltaTime * 0.2f;
+            if (currentWeapon.Overhead < 0f)
+            {
+                currentWeapon.Overhead = 0f;
+            }
+            audioSource.Stop();
+        }
+        overheadImage.fillAmount = currentWeapon.Overhead;
         if (Input.GetMouseButtonDown(1))
         {
             if (magmaBullet == null)

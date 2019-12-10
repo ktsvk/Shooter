@@ -669,7 +669,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodEffect: {fileID: 7320513851384999714, guid: 8fcb22a3da3730a4db9d32662980b0ed,
     type: 3}
-  experience: 20
+  blood:
+  - {fileID: 6012490032644990225, guid: 18d9a78cba8e85c4f95b1df4667b1988, type: 3}
+  - {fileID: 5557659080835121996, guid: 0f6caabe455988a469e32bfe917ccdce, type: 3}
+  - {fileID: 1996360550012173936, guid: e5fe3952239e8b84ca112ef9d5576103, type: 3}
+  - {fileID: 5726353225678715844, guid: c5f14619876b80f4c81362e5558d4d64, type: 3}
   speed: 9
   healthbar: {fileID: 1910269390}
 --- !u!50 &5480549208495558118

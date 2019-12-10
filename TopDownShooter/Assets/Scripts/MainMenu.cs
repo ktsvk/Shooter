@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 0.5f;
         var _player = Instantiate(player, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        _player.onMainMenu = true;
+        _player.OnMainMenu = true;
         for (int i = 0; i < spawns.Length; i++)
         {
             var _enemy = Instantiate(enemy, spawns[i].transform.position, Quaternion.identity);

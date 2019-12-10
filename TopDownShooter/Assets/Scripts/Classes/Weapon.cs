@@ -15,6 +15,12 @@ public class Weapon
     [SerializeField]
     private float overhead;
     [SerializeField]
+    private float weight;
+    [SerializeField]
+    private float price;
+    [SerializeField]
+    private bool isBought = false;
+    [SerializeField]
     private Transform exitPoint;
     [SerializeField]
     private Bullet bullet;
@@ -23,8 +29,11 @@ public class Weapon
 
     public string Name { get => name; }
     public int Index { get => index; }
-    public float TimePerShooting { get => timePerShooting; }
+    public float TimePerShooting { get => timePerShooting;}
     public float Overhead { get => overhead; set => overhead = value; }
+    public float Weight { get => weight;}
+    public float Price { get => price; }
+    public bool IsBought { get => isBought; set => isBought = value; }
     public Transform ExitPoint { get => exitPoint; }
     public Bullet Bullet { get => bullet; }
     public Sprite Sprite { get => sprite; }

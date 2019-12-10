@@ -44,7 +44,7 @@ public class BulletScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            if (player.onMainMenu)
+            if (player.OnMainMenu)
                 return;
             var target = collision.gameObject.GetComponent<Enemy>();
             target.TakeDamage(damage);
@@ -71,7 +71,7 @@ public class BulletScript : MonoBehaviour
             Debug.Log("Trigger fire");
             if (collision.gameObject.CompareTag("Enemy"))
             {
-                if (player.onMainMenu)
+                if (player.OnMainMenu)
                     return;
                 var target = collision.gameObject.GetComponent<Enemy>();
                 target.TakeDamage(damage);
