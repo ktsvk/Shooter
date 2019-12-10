@@ -1,17 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField]
+    private TMP_Dropdown resolutionDropdown;
     [SerializeField]
     private Transform[] spawns;
     [SerializeField]
     private Enemy enemy;
     [SerializeField]
     private Player player;
+    [SerializeField]
+    private AudioMixer audioMixer;
 
+    Resolution[] resolutions;
     void Start()
     {
         Time.timeScale = 0.5f;
@@ -22,6 +30,16 @@ public class MainMenu : MonoBehaviour
             var _enemy = Instantiate(enemy, spawns[i].transform.position, Quaternion.identity);
             _enemy.GetComponentInChildren<Canvas>().enabled = false;
         }
+
+        resolutions = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> options = new List<string>();
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+        }
+        resolutionDropdown.AddOptions(options);
     }
     public void OnStartPlay()
     {
@@ -29,10 +47,23 @@ public class MainMenu : MonoBehaviour
     }
     public void OnOptions()
     {
-        SceneManager.LoadScene(0);
+        
     }
     public void OnExit()
     {
         Application.Quit();
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
+    public void SetQuality(int index)
+    {
+        QualitySettings.SetQualityLevel(index);
+    }
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen; 
     }
 }

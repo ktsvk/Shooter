@@ -4,15 +4,18 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour
 {
     private Player player;
-    [SerializeField]
-    private float moveSpeed = 8f;
 
+    [SerializeField]
+    private float speed = 8f;
     private Camera cam;
     private Rigidbody2D rb;
 
-    private Vector2 movement;
-    private Vector2 mousePos;
+    private Vector2 movement, mousePos;
 
+    public void Initialize(float speed)
+    {
+        this.speed = speed;
+    }
     void Start()
     {
         player = Player.instance;
@@ -34,6 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (player.onMainMenu)
             return;
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
+        rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 238317912}
   - component: {fileID: 238317911}
   - component: {fileID: 238317910}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 261103201}
   - component: {fileID: 261103203}
   - component: {fileID: 261103202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 1910269392}
   - component: {fileID: 1910269391}
   - component: {fileID: 1910269390}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3746587432714842790}
   - component: {fileID: 4914878578167374971}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2807171248086820872}
   - component: {fileID: 6548348150599984915}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm copy 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2732615991531055573}
   - component: {fileID: 2930887280590070617}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6229212260510693322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6560114941434662409}
   - component: {fileID: 1257873176380879396}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: -4929305677257922935}
   - component: {fileID: 5480549208495558118}
   - component: {fileID: 5949436255215390568}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -667,8 +667,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e546f80880a7f084c8f248077f594a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
+  bloodEffect: {fileID: 7320513851384999714, guid: 8fcb22a3da3730a4db9d32662980b0ed,
+    type: 3}
   experience: 20
+  speed: 9
   healthbar: {fileID: 1910269390}
 --- !u!50 &5480549208495558118
 Rigidbody2D:

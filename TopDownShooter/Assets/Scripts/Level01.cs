@@ -7,20 +7,23 @@ using UnityEngine.Experimental.Rendering.LWRP;
 public class Level01 : MonoBehaviour
 {
     private Player player;
+    private PortalScript pscript;
 
     [SerializeField]
     private Transform[] enemySpawns;
-
     [SerializeField]
     private Enemy enemy;
-
     [SerializeField]
     private Light2D flashlight;
 
     [SerializeField]
     private TextMeshProUGUI scoreLabel;
-
-    private float score = 0;
+    [SerializeField]
+    private TextMeshProUGUI enemyLabel;
+    [SerializeField]
+    private TextMeshProUGUI portalLabel;
+    [SerializeField]
+    private TextMeshProUGUI waveLabel;
     void Start()
     {
         Time.timeScale = 1f;
@@ -32,16 +35,20 @@ public class Level01 : MonoBehaviour
             _enemy.KillEnemy += Enemy_KillEnemy;
         }
     }
-
     private void Enemy_KillEnemy(object sender, System.EventArgs e)
     {
-        var enemy = (Enemy)sender;
+        var Enemy = (Enemy)sender;
         player.score += Mathf.Round(Random.Range(enemy.experience - 10, enemy.experience + 10));
         scoreLabel.text = "SCORE " + player.score.ToString("");
     }
 
     void Update()
     {
+        enemyLabel.text = "Enemies alive: " + GameObject.FindGameObjectsWithTag("Enemy").Length;
+        portalLabel.text = "Portals count: " + GameObject.FindGameObjectsWithTag("Portal").Length;
+        pscript = GameObject.FindGameObjectWithTag("Portal").GetComponent<PortalScript>();
+        if (pscript != null)
+        waveLabel.text = "Next wave: " + pscript.TimeToInstantiate.ToString("0");
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (flashlight.gameObject.activeSelf)

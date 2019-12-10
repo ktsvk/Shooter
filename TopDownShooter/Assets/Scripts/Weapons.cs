@@ -11,4 +11,8 @@ public class Weapons : MonoBehaviour
     {
         return weapons[index];
     }
+    public Weapon[] GetWeapons()
+    {
+        return weapons;
+    }
 }

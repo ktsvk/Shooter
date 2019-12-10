@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -29,11 +30,18 @@ public class Player : MonoBehaviour
     private HealthScript healthScript;
     private PlayerMovement playerMovement;
     private Shooting shooting;
+
+    [SerializeField]
+    private TextMeshProUGUI scoreLabel;
     void Start()
     {
         healthScript = GetComponent<HealthScript>();
         playerMovement = GetComponent<PlayerMovement>();
         shooting = GetComponent<Shooting>();
+
+    }
+    public void ChangeScore()
+    {
 
     }
 }

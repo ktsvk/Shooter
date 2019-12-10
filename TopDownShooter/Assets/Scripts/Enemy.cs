@@ -7,23 +7,32 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     private Player player;
-    public HealthSystem healthSystem;
 
+    [SerializeField]
+    private GameObject bloodEffect;
+
+    private HealthSystem healthSystem;
     private Animator anim;
     private Rigidbody2D rb;
     private Vector2 movement;
-    [SerializeField]
-    private float speed = 10f;
+
     public float experience = 20f;
 
+    [SerializeField]
+    private float speed = 10f;
     [SerializeField]
     private Image healthbar;
 
     public event EventHandler KillEnemy;
+
+    public void TakeDamage(float damage)
+    {
+        this.healthSystem.Damage(damage);
+    }
     void Start()
     {
         player = Player.instance;
-        healthSystem = new HealthSystem(1000);
+        healthSystem = new HealthSystem(500);
         healthSystem.Death += HealthSystem_Death;
         healthSystem.OnHealthChanged += HealthSystem_OnHealthChanged;
 
@@ -34,12 +43,14 @@ public class Enemy : MonoBehaviour
     private void HealthSystem_OnHealthChanged(object sender, EventArgs e)
     {
         healthbar.fillAmount = healthSystem.GetHealth() / healthSystem.GetMaxHealth();
-        //anim.Play("get_damage", 0);
+        anim.Play("get_damage", 0);
     }
 
     private void HealthSystem_Death(object sender, EventArgs e)
     {
         Destroy(gameObject);
+        var effect = Instantiate(bloodEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 2f);
         KillEnemy?.Invoke(this, EventArgs.Empty);
     }
 
@@ -62,7 +73,7 @@ public class Enemy : MonoBehaviour
                 return;
             target.healthSystem.Damage(UnityEngine.Random.Range(5, 10));
             Debug.Log("Health " + target.healthSystem.GetHealth());
-            anim.Play("BossAttack", 0);
+            anim.Play("EnemyAttack", 0);
         }
     }
     void FixedUpdate()

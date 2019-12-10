@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563650597935172698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: 3, z: 0}
+  m_LocalPosition: {x: 0.9, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3122070376787953339}
@@ -755,6 +755,7 @@ MonoBehaviour:
   RightHand: {fileID: 3122070375722201639}
   Torso: {fileID: 3122070375866697955}
   Weapon: {fileID: 3122070375312454645}
+  scoreLabel: {fileID: 0}
 --- !u!114 &3122070376787953340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,10 +768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6ac395a4f450b49bec33d5525b4b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: 0
-  exitPoints:
-  - {fileID: 3122070376521217900}
-  - {fileID: 660940130}
 --- !u!114 &3122070376787953341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,7 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b3acb15b4c2004b8bdfe460a99f119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  speed: 8
 --- !u!114 &3726433500528568308
 MonoBehaviour:
   m_ObjectHideFlags: 0

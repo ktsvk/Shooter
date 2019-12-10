@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FlashLight.cs" />
     <Compile Include="Assets\Scripts\BulletScript.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
     <Compile Include="Assets\Scripts\Classes\Bullet.cs" />
@@ -79,7 +78,8 @@
     <Compile Include="Assets\Scripts\Minimap.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Shield.cs" />
+    <Compile Include="Assets\Scripts\PortalScript.cs" />
+    <Compile Include="Assets\Scripts\RotatedObject.cs" />
     <Compile Include="Assets\Scripts\Shooting.cs" />
     <Compile Include="Assets\Scripts\Spawn.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />

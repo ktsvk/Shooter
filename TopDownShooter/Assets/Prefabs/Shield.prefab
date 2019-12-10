@@ -155,8 +155,8 @@ MonoBehaviour:
   - {fileID: 1100283977947195796, guid: 239e59cffb4dfb84899f7a5775d90782, type: 3}
   - {fileID: 71515668304526284, guid: aa0124d7e3fea8d4cb7277b6416e19a8, type: 3}
   - {fileID: 8395596528410760471, guid: 14d229bff0273d6409167e608a496e5f, type: 3}
-  xSpread: 2
-  ySpread: 2
-  yOffset: 2
+  target: {fileID: 0}
+  damage: 10
+  xSpread: 3
+  ySpread: 3
   rotSpeed: 10
-  minimiseSpeed: 2

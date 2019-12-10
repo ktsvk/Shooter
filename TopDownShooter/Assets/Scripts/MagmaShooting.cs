@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class MagmaShooting : MonoBehaviour
 {
-    private Vector2 targetPos;
-
-    public float speed = 40f;
-    public Transform firePoint;
-
     public bool getBack = false;
 
+    private Vector2 mousePos;
+    private float speed = 40f;
     private Player player;
-    private float distance;
+
+    public void Initialize(float speed)
+    {
+        this.speed = speed;
+    }
     private void Start()
     {
         player = Player.instance;
-        targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
     void Update()
     {
         if (getBack)
         {
-            distance = Vector2.Distance(transform.position, player.gameObject.transform.position);
+            float distance = Vector2.Distance(transform.position, player.gameObject.transform.position);
             if (distance <= 0.5f)
             {
                 Destroy(gameObject);
@@ -31,7 +32,7 @@ public class MagmaShooting : MonoBehaviour
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, mousePos, speed * Time.deltaTime);
         }
     }
 }
